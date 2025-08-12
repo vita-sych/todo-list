@@ -1,20 +1,18 @@
-import "./App.css";
+import './App.css';
+import TodoList from './TodoList.jsx';
+import TodoForm from './TodoForm.jsx';
+import { useState } from 'react';
 
 function App() {
-  const todos = [
-    { id: 1, title: "review resources" },
-    { id: 2, title: "take notes" },
-    { id: 3, title: "code out app" },
-  ];
+  const initialValue = 'Example Text';
+  const [newTodo, setNewTodo] = useState(initialValue);
 
   return (
     <div>
       <h1>To do list</h1>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.title}</li>
-        ))}
-      </ul>
+      <TodoForm></TodoForm>
+      <p>{newTodo}</p>
+      <TodoList></TodoList>
     </div>
   );
 }
