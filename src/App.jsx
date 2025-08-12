@@ -8,22 +8,21 @@ function App() {
   const [todoList, setTodoList] = useState(initialValue);
 
   function addTodo(title) {
+    if (!title) return;
+
     const newTodo = {
       id: Date.now(),
       title: title,
     };
 
     setTodoList([...todoList, newTodo]);
-
-    console.log(JSON.stringify(newTodo));
   }
 
   return (
     <div>
       <h1>To do list</h1>
       <TodoForm onAddTodo={addTodo}></TodoForm>
-
-      <TodoList></TodoList>
+      <TodoList todoList={todoList}></TodoList>
     </div>
   );
 }
