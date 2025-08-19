@@ -9,12 +9,10 @@ function App() {
   function addTodo(title) {
     if (!title) return;
 
-    const isCompleted = false;
-
     const newTodo = {
       id: Date.now(),
       title: title,
-      isCompleted: isCompleted,
+      isCompleted: false,
     };
 
     setTodoList([...todoList, newTodo]);
@@ -27,18 +25,14 @@ function App() {
       } else return todo;
     });
 
-    setTodoList([...updatedTodos]);
+    setTodoList(updatedTodos);
   }
 
   return (
     <div>
       <h1>To do list</h1>
       <TodoForm onAddTodo={addTodo}></TodoForm>
-      {todoList.length > 0 ? (
-        <TodoList todoList={todoList} onCompleteTodo={completeTodo}></TodoList>
-      ) : (
-        <p>Add todo above to get started</p>
-      )}
+      <TodoList todoList={todoList} onCompleteTodo={completeTodo}></TodoList>
     </div>
   );
 }
