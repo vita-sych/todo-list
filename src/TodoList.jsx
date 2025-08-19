@@ -1,10 +1,14 @@
 import TodoListItem from './TodoListItem';
 
-function TodoList({ todoList }) {
+function TodoList({ todoList, onCompleteTodo }) {
   return (
     <ul>
       {todoList.map((todo) => (
-        <TodoListItem key={todo.id} title={todo.title}></TodoListItem>
+        <TodoListItem
+          key={todo.id}
+          todo={todo}
+          onCompleteTodo={onCompleteTodo}
+        ></TodoListItem>
       ))}
     </ul>
   );
