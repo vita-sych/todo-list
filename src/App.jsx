@@ -4,8 +4,7 @@ import TodoForm from './TodoForm.jsx';
 import { useState } from 'react';
 
 function App() {
-  const initialValue = [];
-  const [todoList, setTodoList] = useState(initialValue);
+  const [todoList, setTodoList] = useState([]);
 
   function addTodo(title) {
     if (!title) return;
@@ -13,16 +12,27 @@ function App() {
     const newTodo = {
       id: Date.now(),
       title: title,
+      isCompleted: false,
     };
 
     setTodoList([...todoList, newTodo]);
+  }
+
+  function completeTodo(id) {
+    const updatedTodos = todoList.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, isCompleted: true };
+      } else return todo;
+    });
+
+    setTodoList(updatedTodos);
   }
 
   return (
     <div>
       <h1>To do list</h1>
       <TodoForm onAddTodo={addTodo}></TodoForm>
-      <TodoList todoList={todoList}></TodoList>
+      <TodoList todoList={todoList} onCompleteTodo={completeTodo}></TodoList>
     </div>
   );
 }
